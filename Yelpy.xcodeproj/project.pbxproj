@@ -8,20 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		066B25241F70E68700EC69D5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066B25231F70E68700EC69D5 /* AppDelegate.swift */; };
-		066B25261F70E68700EC69D5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066B25251F70E68700EC69D5 /* ViewController.swift */; };
 		066B25291F70E68700EC69D5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 066B25271F70E68700EC69D5 /* Main.storyboard */; };
 		066B252B1F70E68700EC69D5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 066B252A1F70E68700EC69D5 /* Assets.xcassets */; };
 		066B252E1F70E68700EC69D5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 066B252C1F70E68700EC69D5 /* LaunchScreen.storyboard */; };
+		066B25361F70E77300EC69D5 /* YelpyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066B25351F70E77300EC69D5 /* YelpyViewController.swift */; };
+		066B25381F70E89200EC69D5 /* FiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066B25371F70E89200EC69D5 /* FiltersViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		066B25201F70E68700EC69D5 /* Yelpy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yelpy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		066B25231F70E68700EC69D5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		066B25251F70E68700EC69D5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		066B25281F70E68700EC69D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		066B252A1F70E68700EC69D5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		066B252D1F70E68700EC69D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		066B252F1F70E68700EC69D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		066B25351F70E77300EC69D5 /* YelpyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YelpyViewController.swift; sourceTree = "<group>"; };
+		066B25371F70E89200EC69D5 /* FiltersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiltersViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,7 +57,8 @@
 			isa = PBXGroup;
 			children = (
 				066B25231F70E68700EC69D5 /* AppDelegate.swift */,
-				066B25251F70E68700EC69D5 /* ViewController.swift */,
+				066B25351F70E77300EC69D5 /* YelpyViewController.swift */,
+				066B25371F70E89200EC69D5 /* FiltersViewController.swift */,
 				066B25271F70E68700EC69D5 /* Main.storyboard */,
 				066B252A1F70E68700EC69D5 /* Assets.xcassets */,
 				066B252C1F70E68700EC69D5 /* LaunchScreen.storyboard */,
@@ -136,8 +139,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				066B25261F70E68700EC69D5 /* ViewController.swift in Sources */,
 				066B25241F70E68700EC69D5 /* AppDelegate.swift in Sources */,
+				066B25381F70E89200EC69D5 /* FiltersViewController.swift in Sources */,
+				066B25361F70E77300EC69D5 /* YelpyViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
