@@ -1,0 +1,6 @@
+.DS_Store
+DerivedData/
+Yelpy.xcodeproj/xcuserdata
+Pods/Pods.xcodeproj/xcuserdata
+Yelpy.xcworkspace/xcuserdata
+Yelpy.xcodeproj/project.xcworkspace/xcuserdata

@@ -7,23 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		013BFB3B1F71C290004CF1B1 /* FiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013BFB3A1F71C290004CF1B1 /* FiltersViewController.swift */; };
+		013BFB3D1F71C29A004CF1B1 /* YelpyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013BFB3C1F71C29A004CF1B1 /* YelpyViewController.swift */; };
 		066B25241F70E68700EC69D5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066B25231F70E68700EC69D5 /* AppDelegate.swift */; };
 		066B25291F70E68700EC69D5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 066B25271F70E68700EC69D5 /* Main.storyboard */; };
 		066B252B1F70E68700EC69D5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 066B252A1F70E68700EC69D5 /* Assets.xcassets */; };
 		066B252E1F70E68700EC69D5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 066B252C1F70E68700EC69D5 /* LaunchScreen.storyboard */; };
-		066B25361F70E77300EC69D5 /* YelpyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066B25351F70E77300EC69D5 /* YelpyViewController.swift */; };
-		066B25381F70E89200EC69D5 /* FiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066B25371F70E89200EC69D5 /* FiltersViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		013BFB3A1F71C290004CF1B1 /* FiltersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiltersViewController.swift; sourceTree = "<group>"; };
+		013BFB3C1F71C29A004CF1B1 /* YelpyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YelpyViewController.swift; sourceTree = "<group>"; };
 		066B25201F70E68700EC69D5 /* Yelpy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yelpy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		066B25231F70E68700EC69D5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		066B25281F70E68700EC69D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		066B252A1F70E68700EC69D5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		066B252D1F70E68700EC69D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		066B252F1F70E68700EC69D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		066B25351F70E77300EC69D5 /* YelpyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YelpyViewController.swift; sourceTree = "<group>"; };
-		066B25371F70E89200EC69D5 /* FiltersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiltersViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +37,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		013BFB361F71C0F2004CF1B1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		013BFB381F71C10E004CF1B1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		013BFB391F71C1DF004CF1B1 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				013BFB3A1F71C290004CF1B1 /* FiltersViewController.swift */,
+				013BFB3C1F71C29A004CF1B1 /* YelpyViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		013BFB3E1F71C2B1004CF1B1 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				066B252A1F70E68700EC69D5 /* Assets.xcassets */,
+				066B25231F70E68700EC69D5 /* AppDelegate.swift */,
+				066B25271F70E68700EC69D5 /* Main.storyboard */,
+				066B252C1F70E68700EC69D5 /* LaunchScreen.storyboard */,
+				066B252F1F70E68700EC69D5 /* Info.plist */,
+			);
+			name = SupportingFiles;
+			sourceTree = "<group>";
+		};
 		066B25171F70E68700EC69D5 = {
 			isa = PBXGroup;
 			children = (
@@ -56,13 +91,10 @@
 		066B25221F70E68700EC69D5 /* Yelpy */ = {
 			isa = PBXGroup;
 			children = (
-				066B25231F70E68700EC69D5 /* AppDelegate.swift */,
-				066B25351F70E77300EC69D5 /* YelpyViewController.swift */,
-				066B25371F70E89200EC69D5 /* FiltersViewController.swift */,
-				066B25271F70E68700EC69D5 /* Main.storyboard */,
-				066B252A1F70E68700EC69D5 /* Assets.xcassets */,
-				066B252C1F70E68700EC69D5 /* LaunchScreen.storyboard */,
-				066B252F1F70E68700EC69D5 /* Info.plist */,
+				013BFB391F71C1DF004CF1B1 /* Controllers */,
+				013BFB361F71C0F2004CF1B1 /* Models */,
+				013BFB3E1F71C2B1004CF1B1 /* SupportingFiles */,
+				013BFB381F71C10E004CF1B1 /* Views */,
 			);
 			path = Yelpy;
 			sourceTree = "<group>";
@@ -140,8 +172,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				066B25241F70E68700EC69D5 /* AppDelegate.swift in Sources */,
-				066B25381F70E89200EC69D5 /* FiltersViewController.swift in Sources */,
-				066B25361F70E77300EC69D5 /* YelpyViewController.swift in Sources */,
+				013BFB3D1F71C29A004CF1B1 /* YelpyViewController.swift in Sources */,
+				013BFB3B1F71C290004CF1B1 /* FiltersViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,6 +333,7 @@
 				066B25341F70E68700EC69D5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
