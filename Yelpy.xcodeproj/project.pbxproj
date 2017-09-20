@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		013BFB3B1F71C290004CF1B1 /* FiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013BFB3A1F71C290004CF1B1 /* FiltersViewController.swift */; };
 		013BFB3D1F71C29A004CF1B1 /* YelpyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013BFB3C1F71C29A004CF1B1 /* YelpyViewController.swift */; };
+		013BFB401F730751004CF1B1 /* BusinessTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013BFB3F1F730751004CF1B1 /* BusinessTableViewCell.swift */; };
 		066B25241F70E68700EC69D5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066B25231F70E68700EC69D5 /* AppDelegate.swift */; };
 		066B25291F70E68700EC69D5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 066B25271F70E68700EC69D5 /* Main.storyboard */; };
 		066B252B1F70E68700EC69D5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 066B252A1F70E68700EC69D5 /* Assets.xcassets */; };
@@ -22,6 +23,7 @@
 /* Begin PBXFileReference section */
 		013BFB3A1F71C290004CF1B1 /* FiltersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiltersViewController.swift; sourceTree = "<group>"; };
 		013BFB3C1F71C29A004CF1B1 /* YelpyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YelpyViewController.swift; sourceTree = "<group>"; };
+		013BFB3F1F730751004CF1B1 /* BusinessTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessTableViewCell.swift; sourceTree = "<group>"; };
 		066B25201F70E68700EC69D5 /* Yelpy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yelpy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		066B25231F70E68700EC69D5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		066B25281F70E68700EC69D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -60,6 +62,7 @@
 			isa = PBXGroup;
 			children = (
 				066B25391F720E9900EC69D5 /* FiltersTableViewCell.swift */,
+				013BFB3F1F730751004CF1B1 /* BusinessTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -263,7 +266,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -274,6 +277,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				066B25241F70E68700EC69D5 /* AppDelegate.swift in Sources */,
+				013BFB401F730751004CF1B1 /* BusinessTableViewCell.swift in Sources */,
 				066B253A1F720E9900EC69D5 /* FiltersTableViewCell.swift in Sources */,
 				013BFB3D1F71C29A004CF1B1 /* YelpyViewController.swift in Sources */,
 				06F90EE61F72B9C6009F446E /* Business.swift in Sources */,

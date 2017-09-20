@@ -12,28 +12,23 @@ class YelpyViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     @IBOutlet weak var tableView: UITableView!
     
+    var businesses : [Business] = []
+    var searchTerm : String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        self.tableView.estimatedRowHeight = 100
+        
+        //setup navigation bar related items
         let searchBar:UISearchBar = UISearchBar(frame: CGRect(x:20, y:0, width:self.tableView.frame.width-20, height:(self.navigationController?.navigationBar.frame.height)! - 5))
         searchBar.placeholder = "Search for Places"
         searchBar.delegate = self
         self.navigationItem.titleView = searchBar // or use self.navigationcontroller.topItem?.titleView = searchBar
 
-        Business.searchWithTerm(term: "Thai", completion: { (businesses: [Business]?, error: Error?) -> Void in
-            
-            //self.businesses = businesses
-            if let businesses = businesses {
-                for business in businesses {
-                    print(business.name!)
-                    print(business.address!)
-                }
-            }
-            
-            }
-        )
+        self.loadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -41,17 +36,47 @@ class YelpyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         // Dispose of any resources that can be recreated.
     }
     
+    func loadData() {
+        Business.searchWithTerm(term: self.searchTerm ?? "Thai", completion: { (businesses: [Business]?, error: Error?) -> Void in
+                if let businesses = businesses {
+                    self.businesses = businesses
+                    for business in businesses {
+                        print(business.name!)
+                        print(business.address!)
+                    }
+                } else {
+                    //reset to empty
+                    self.businesses = []
+                }
+                self.tableView.reloadData()
+            })
+    }
 
     // MARK: - Table view
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-        cell.textLabel?.text = "\(indexPath.row)"
+        let cell = tableView.dequeueReusableCell(withIdentifier: "BusinessTableViewCell", for: indexPath) as! BusinessTableViewCell
+        let business = self.businesses[indexPath.row] as Business
+        cell.nameLabel.text = business.name
+        cell.addressLabel.text = business.address
+        cell.reviewsLabel.text = "\(business.reviewCount ?? 0) reviews"
+        cell.distanceLabel.text = business.distance
+        cell.categoryLabel.text = business.categories
+        if (business.imageURL != nil) {
+            cell.businessImageView.setImageWith(business.imageURL! as URL)
+        } else {
+            cell.businessImageView = nil
+        }
         return cell
     }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return self.businesses.count
     }
     
     // MARK: - Search Bar
@@ -70,6 +95,8 @@ class YelpyViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.searchTerm = searchBar.text
+        self.loadData()
         searchBar.resignFirstResponder()
     }
     

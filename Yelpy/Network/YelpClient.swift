@@ -32,6 +32,10 @@ class YelpClient: BDBOAuth1SessionManager {
         super.init(coder: aDecoder)
     }
     
+    override init(baseURL: URL!, sessionConfiguration: URLSessionConfiguration!) {
+        super.init(baseURL: baseURL, sessionConfiguration: sessionConfiguration)
+    }
+    
     init(consumerKey key: String!, consumerSecret secret: String!, accessToken: String!, accessSecret: String!) {
         self.accessToken = accessToken
         self.accessSecret = accessSecret
