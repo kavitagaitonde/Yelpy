@@ -14,6 +14,7 @@ class FiltersViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBOutlet weak var searchButton: UIBarButtonItem!
     
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
     
     //Yelp specific filters
     var isDistanceCollapsed : Bool = true
@@ -23,18 +24,192 @@ class FiltersViewController: UIViewController, UITableViewDelegate, UITableViewD
     var filtersDict : [String: AnyObject] = [:]
     var distanceArray : [String] = ["Auto", "0.3 miles", "1 mile", "5 miles", "10 miles", "20 miles"]
     var sortByArray : [String] = ["Best Match"]
-    var categoryArray : [String] = ["Afghan", "African", "American (New)", "See All"]
-    var categoryFullArray : [String] = ["Afghan", "African", "American (New)", "American (Traditional)", "Japanese"]
     var categorySelectionDict : [Int:Bool] = [:]
     var selectedDistanceIndex = 0
     var selectedSortByIndex = 0
+    var isOfferingDeal : Bool = false
     let filtersCount = 4
+    let categoryArray = [["name" : "Afghan", "code": "afghani"],
+                      ["name" : "African", "code": "african"],
+                      ["name" : "American, New", "code": "newamerican"],
+                      ["name" : "American, Traditional", "code": "tradamerican"],
+                      ["name" : "Arabian", "code": "arabian"],
+                      ["name" : "Argentine", "code": "argentine"],
+                      ["name" : "Armenian", "code": "armenian"],
+                      ["name" : "Asian Fusion", "code": "asianfusion"],
+                      ["name" : "Asturian", "code": "asturian"],
+                      ["name" : "Australian", "code": "australian"],
+                      ["name" : "Austrian", "code": "austrian"],
+                      ["name" : "Baguettes", "code": "baguettes"],
+                      ["name" : "Bangladeshi", "code": "bangladeshi"],
+                      ["name" : "Barbeque", "code": "bbq"],
+                      ["name" : "Basque", "code": "basque"],
+                      ["name" : "Bavarian", "code": "bavarian"],
+                      ["name" : "Beer Garden", "code": "beergarden"],
+                      ["name" : "Beer Hall", "code": "beerhall"],
+                      ["name" : "Beisl", "code": "beisl"],
+                      ["name" : "Belgian", "code": "belgian"],
+                      ["name" : "Bistros", "code": "bistros"],
+                      ["name" : "Black Sea", "code": "blacksea"],
+                      ["name" : "Brasseries", "code": "brasseries"],
+                      ["name" : "Brazilian", "code": "brazilian"],
+                      ["name" : "Breakfast & Brunch", "code": "breakfast_brunch"],
+                      ["name" : "British", "code": "british"],
+                      ["name" : "Buffets", "code": "buffets"],
+                      ["name" : "Bulgarian", "code": "bulgarian"],
+                      ["name" : "Burgers", "code": "burgers"],
+                      ["name" : "Burmese", "code": "burmese"],
+                      ["name" : "Cafes", "code": "cafes"],
+                      ["name" : "Cafeteria", "code": "cafeteria"],
+                      ["name" : "Cajun/Creole", "code": "cajun"],
+                      ["name" : "Cambodian", "code": "cambodian"],
+                      ["name" : "Canadian", "code": "New)"],
+                      ["name" : "Canteen", "code": "canteen"],
+                      ["name" : "Caribbean", "code": "caribbean"],
+                      ["name" : "Catalan", "code": "catalan"],
+                      ["name" : "Chech", "code": "chech"],
+                      ["name" : "Cheesesteaks", "code": "cheesesteaks"],
+                      ["name" : "Chicken Shop", "code": "chickenshop"],
+                      ["name" : "Chicken Wings", "code": "chicken_wings"],
+                      ["name" : "Chilean", "code": "chilean"],
+                      ["name" : "Chinese", "code": "chinese"],
+                      ["name" : "Comfort Food", "code": "comfortfood"],
+                      ["name" : "Corsican", "code": "corsican"],
+                      ["name" : "Creperies", "code": "creperies"],
+                      ["name" : "Cuban", "code": "cuban"],
+                      ["name" : "Curry Sausage", "code": "currysausage"],
+                      ["name" : "Cypriot", "code": "cypriot"],
+                      ["name" : "Czech", "code": "czech"],
+                      ["name" : "Czech/Slovakian", "code": "czechslovakian"],
+                      ["name" : "Danish", "code": "danish"],
+                      ["name" : "Delis", "code": "delis"],
+                      ["name" : "Diners", "code": "diners"],
+                      ["name" : "Dumplings", "code": "dumplings"],
+                      ["name" : "Eastern European", "code": "eastern_european"],
+                      ["name" : "Ethiopian", "code": "ethiopian"],
+                      ["name" : "Fast Food", "code": "hotdogs"],
+                      ["name" : "Filipino", "code": "filipino"],
+                      ["name" : "Fish & Chips", "code": "fishnchips"],
+                      ["name" : "Fondue", "code": "fondue"],
+                      ["name" : "Food Court", "code": "food_court"],
+                      ["name" : "Food Stands", "code": "foodstands"],
+                      ["name" : "French", "code": "french"],
+                      ["name" : "French Southwest", "code": "sud_ouest"],
+                      ["name" : "Galician", "code": "galician"],
+                      ["name" : "Gastropubs", "code": "gastropubs"],
+                      ["name" : "Georgian", "code": "georgian"],
+                      ["name" : "German", "code": "german"],
+                      ["name" : "Giblets", "code": "giblets"],
+                      ["name" : "Gluten-Free", "code": "gluten_free"],
+                      ["name" : "Greek", "code": "greek"],
+                      ["name" : "Halal", "code": "halal"],
+                      ["name" : "Hawaiian", "code": "hawaiian"],
+                      ["name" : "Heuriger", "code": "heuriger"],
+                      ["name" : "Himalayan/Nepalese", "code": "himalayan"],
+                      ["name" : "Hong Kong Style Cafe", "code": "hkcafe"],
+                      ["name" : "Hot Dogs", "code": "hotdog"],
+                      ["name" : "Hot Pot", "code": "hotpot"],
+                      ["name" : "Hungarian", "code": "hungarian"],
+                      ["name" : "Iberian", "code": "iberian"],
+                      ["name" : "Indian", "code": "indpak"],
+                      ["name" : "Indonesian", "code": "indonesian"],
+                      ["name" : "International", "code": "international"],
+                      ["name" : "Irish", "code": "irish"],
+                      ["name" : "Island Pub", "code": "island_pub"],
+                      ["name" : "Israeli", "code": "israeli"],
+                      ["name" : "Italian", "code": "italian"],
+                      ["name" : "Japanese", "code": "japanese"],
+                      ["name" : "Jewish", "code": "jewish"],
+                      ["name" : "Kebab", "code": "kebab"],
+                      ["name" : "Korean", "code": "korean"],
+                      ["name" : "Kosher", "code": "kosher"],
+                      ["name" : "Kurdish", "code": "kurdish"],
+                      ["name" : "Laos", "code": "laos"],
+                      ["name" : "Laotian", "code": "laotian"],
+                      ["name" : "Latin American", "code": "latin"],
+                      ["name" : "Live/Raw Food", "code": "raw_food"],
+                      ["name" : "Lyonnais", "code": "lyonnais"],
+                      ["name" : "Malaysian", "code": "malaysian"],
+                      ["name" : "Meatballs", "code": "meatballs"],
+                      ["name" : "Mediterranean", "code": "mediterranean"],
+                      ["name" : "Mexican", "code": "mexican"],
+                      ["name" : "Middle Eastern", "code": "mideastern"],
+                      ["name" : "Milk Bars", "code": "milkbars"],
+                      ["name" : "Modern Australian", "code": "modern_australian"],
+                      ["name" : "Modern European", "code": "modern_european"],
+                      ["name" : "Mongolian", "code": "mongolian"],
+                      ["name" : "Moroccan", "code": "moroccan"],
+                      ["name" : "New Zealand", "code": "newzealand"],
+                      ["name" : "Night Food", "code": "nightfood"],
+                      ["name" : "Norcinerie", "code": "norcinerie"],
+                      ["name" : "Open Sandwiches", "code": "opensandwiches"],
+                      ["name" : "Oriental", "code": "oriental"],
+                      ["name" : "Pakistani", "code": "pakistani"],
+                      ["name" : "Parent Cafes", "code": "eltern_cafes"],
+                      ["name" : "Parma", "code": "parma"],
+                      ["name" : "Persian/Iranian", "code": "persian"],
+                      ["name" : "Peruvian", "code": "peruvian"],
+                      ["name" : "Pita", "code": "pita"],
+                      ["name" : "Pizza", "code": "pizza"],
+                      ["name" : "Polish", "code": "polish"],
+                      ["name" : "Portuguese", "code": "portuguese"],
+                      ["name" : "Potatoes", "code": "potatoes"],
+                      ["name" : "Poutineries", "code": "poutineries"],
+                      ["name" : "Pub Food", "code": "pubfood"],
+                      ["name" : "Rice", "code": "riceshop"],
+                      ["name" : "Romanian", "code": "romanian"],
+                      ["name" : "Rotisserie Chicken", "code": "rotisserie_chicken"],
+                      ["name" : "Rumanian", "code": "rumanian"],
+                      ["name" : "Russian", "code": "russian"],
+                      ["name" : "Salad", "code": "salad"],
+                      ["name" : "Sandwiches", "code": "sandwiches"],
+                      ["name" : "Scandinavian", "code": "scandinavian"],
+                      ["name" : "Scottish", "code": "scottish"],
+                      ["name" : "Seafood", "code": "seafood"],
+                      ["name" : "Serbo Croatian", "code": "serbocroatian"],
+                      ["name" : "Signature Cuisine", "code": "signature_cuisine"],
+                      ["name" : "Singaporean", "code": "singaporean"],
+                      ["name" : "Slovakian", "code": "slovakian"],
+                      ["name" : "Soul Food", "code": "soulfood"],
+                      ["name" : "Soup", "code": "soup"],
+                      ["name" : "Southern", "code": "southern"],
+                      ["name" : "Spanish", "code": "spanish"],
+                      ["name" : "Steakhouses", "code": "steak"],
+                      ["name" : "Sushi Bars", "code": "sushi"],
+                      ["name" : "Swabian", "code": "swabian"],
+                      ["name" : "Swedish", "code": "swedish"],
+                      ["name" : "Swiss Food", "code": "swissfood"],
+                      ["name" : "Tabernas", "code": "tabernas"],
+                      ["name" : "Taiwanese", "code": "taiwanese"],
+                      ["name" : "Tapas Bars", "code": "tapas"],
+                      ["name" : "Tapas/Small Plates", "code": "tapasmallplates"],
+                      ["name" : "Tex-Mex", "code": "tex-mex"],
+                      ["name" : "Thai", "code": "thai"],
+                      ["name" : "Traditional Norwegian", "code": "norwegian"],
+                      ["name" : "Traditional Swedish", "code": "traditional_swedish"],
+                      ["name" : "Trattorie", "code": "trattorie"],
+                      ["name" : "Turkish", "code": "turkish"],
+                      ["name" : "Ukrainian", "code": "ukrainian"],
+                      ["name" : "Uzbek", "code": "uzbek"],
+                      ["name" : "Vegan", "code": "vegan"],
+                      ["name" : "Vegetarian", "code": "vegetarian"],
+                      ["name" : "Venison", "code": "venison"],
+                      ["name" : "Vietnamese", "code": "vietnamese"],
+                      ["name" : "Wok", "code": "wok"],
+                      ["name" : "Wraps", "code": "wraps"],
+                      ["name" : "Yugoslav", "code": "yugoslav"]]
+    
+    var searchAction : ([String: AnyObject]) -> Void = { (filters: [String: AnyObject]) in }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        
+        //self.navigationItem.rightBarButtonItem.
+        //addTarget(self, action: #selector(onSearchClicked(_:)), for: UIControlEvents.touchUpInside)
     }
 
     override func didReceiveMemoryWarning() {
@@ -93,9 +268,9 @@ class FiltersViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
         case 3 : // category
             if self.isCategoryCollapsed {
-                return self.categoryArray.count
+                return 4
             } else {
-                return self.categoryFullArray.count
+                return self.categoryArray.count
             }
         default :
             return 0
@@ -103,29 +278,44 @@ class FiltersViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-        //cell.textLabel?.text = "\(indexPath.row)"
+        let cell = tableView.dequeueReusableCell(withIdentifier: "FiltersTableViewCell", for: indexPath) as! FiltersTableViewCell
         
+        cell.selectionSwitch.isHidden = true
+        cell.selectionSwitch.isOn = false
         switch (indexPath.section) {
         case 0 : //deal
-            cell.textLabel?.text = "Offering a deal"
+            cell.filterLabel?.text = "Offering a deal"
+            cell.selectionSwitch.isHidden = false
+            cell.selectionSwitch.isOn = self.isOfferingDeal
+            cell.switchAction = { (isOn: Bool) in
+                self.isOfferingDeal = isOn
+            }
         case 1 : //distance
             if self.isDistanceCollapsed {
-                cell.textLabel?.text = self.distanceArray[self.selectedDistanceIndex]
+                cell.filterLabel?.text = self.distanceArray[self.selectedDistanceIndex]
             } else {
-                cell.textLabel?.text = self.distanceArray[indexPath.row]
+                cell.filterLabel?.text = self.distanceArray[indexPath.row]
             }
         case 2 : // sort by
             if self.isSortByCollapsed {
-                cell.textLabel?.text = self.sortByArray[self.selectedSortByIndex]
+                cell.filterLabel?.text = self.sortByArray[self.selectedSortByIndex]
             } else {
-                cell.textLabel?.text = self.sortByArray[indexPath.row]
+                cell.filterLabel?.text = self.sortByArray[indexPath.row]
             }
         case 3 : // category
-            if self.isCategoryCollapsed {
-                cell.textLabel?.text = self.categoryArray[indexPath.row]
+            if self.isCategoryCollapsed && indexPath.row == 3 {
+                cell.filterLabel?.text = "Show more"
             } else {
-                cell.textLabel?.text = self.categoryFullArray[indexPath.row]
+                cell.selectionSwitch.isHidden = false
+                cell.filterLabel?.text = self.categoryArray[indexPath.row]["name"]
+                if let val = self.categorySelectionDict[indexPath.row] {
+                    cell.selectionSwitch.isOn = val
+                } else {
+                    cell.selectionSwitch.isOn = false
+                }
+                cell.switchAction = { (isOn: Bool) in
+                    self.categorySelectionDict[indexPath.row] = isOn
+                }
             }
         default :
             break
@@ -187,6 +377,29 @@ class FiltersViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.tableView.reloadData()
     }
     
+    // MARK: - Actions
+    
+    @IBAction func onCancelClicked(_ sender: AnyObject) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func onSearchClicked(_ sender: AnyObject) {
+        let filters = ["deals": "on",
+                       "distance": self.distanceArray[self.selectedDistanceIndex],
+                       "sortBy": self.sortByArray[self.selectedSortByIndex]]
+                       
+        
+        searchAction(filters as [String : AnyObject])
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func touchUpInside(_ sender: AnyObject) {
+    }
+    
+    /*func onSearchClicked(_ sender: UIBarButtonItem) {
+     
+    }*/
+
     /*
     // MARK: - Navigation
 

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class YelpyViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class YelpyViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -17,6 +17,11 @@ class YelpyViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        let searchBar:UISearchBar = UISearchBar(frame: CGRect(x:20, y:0, width:self.tableView.frame.width-20, height:(self.navigationController?.navigationBar.frame.height)! - 5))
+        searchBar.placeholder = "Search for Places"
+        searchBar.delegate = self
+        self.navigationItem.titleView = searchBar // or use self.navigationcontroller.topItem?.titleView = searchBar
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,14 +42,43 @@ class YelpyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return 10
     }
     
-    /*
+    // MARK: - Search Bar
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        
+        if(searchBar.showsCancelButton == false) {
+            searchBar.showsCancelButton = true
+        }
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = false
+        searchBar.text = ""
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    
+
+    
+    
+
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "showFiltersViewController" {
+            let filtersController = segue.destination as! FiltersViewController
+            filtersController.searchAction = { (filters: [String: AnyObject]) in 
+                print(filters)
+            }
+        }
+
     }
-    */
+ 
 
 }
