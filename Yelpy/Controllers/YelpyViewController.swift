@@ -22,6 +22,18 @@ class YelpyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         searchBar.delegate = self
         self.navigationItem.titleView = searchBar // or use self.navigationcontroller.topItem?.titleView = searchBar
 
+        Business.searchWithTerm(term: "Thai", completion: { (businesses: [Business]?, error: Error?) -> Void in
+            
+            //self.businesses = businesses
+            if let businesses = businesses {
+                for business in businesses {
+                    print(business.name!)
+                    print(business.address!)
+                }
+            }
+            
+            }
+        )
     }
 
     override func didReceiveMemoryWarning() {

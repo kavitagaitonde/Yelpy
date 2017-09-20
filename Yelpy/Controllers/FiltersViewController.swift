@@ -380,26 +380,18 @@ class FiltersViewController: UIViewController, UITableViewDelegate, UITableViewD
     // MARK: - Actions
     
     @IBAction func onCancelClicked(_ sender: AnyObject) {
-        self.navigationController?.popViewController(animated: true)
+         _ = navigationController?.popViewController(animated: true)
     }
     
     @IBAction func onSearchClicked(_ sender: AnyObject) {
         let filters = ["deals": "on",
                        "distance": self.distanceArray[self.selectedDistanceIndex],
                        "sortBy": self.sortByArray[self.selectedSortByIndex]]
-                       
         
         searchAction(filters as [String : AnyObject])
-        self.navigationController?.popViewController(animated: true)
+         _ = navigationController?.popViewController(animated: true)
     }
     
-    @IBAction func touchUpInside(_ sender: AnyObject) {
-    }
-    
-    /*func onSearchClicked(_ sender: UIBarButtonItem) {
-     
-    }*/
-
     /*
     // MARK: - Navigation
 
