@@ -12,16 +12,30 @@ class YelpyViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     @IBOutlet weak var tableView: UITableView!
     
+    var infiniteScrollActivityView:InfiniteScrollActivityView?
+    var isMoreDataLoading = false
     var businesses : [Business] = []
-    var searchTerm : String?
+    var filter : Filter = Filter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        self.tableView.estimatedRowHeight = 100
+        self.tableView.estimatedRowHeight = 75
+        self.tableView.rowHeight = UITableViewAutomaticDimension
         
+        // Set up Infinite Scroll loading indicator
+        let frame = CGRect(x: 0, y: tableView.contentSize.height, width: tableView.bounds.size.width, height: InfiniteScrollActivityView.defaultHeight)
+        infiniteScrollActivityView = InfiniteScrollActivityView(frame: frame)
+        infiniteScrollActivityView!.isHidden = true
+        self.tableView.addSubview(infiniteScrollActivityView!)
+        
+        var insets = self.tableView.contentInset
+        insets.bottom += InfiniteScrollActivityView.defaultHeight + 50
+        self.tableView.contentInset = insets
+
+
         //setup navigation bar related items
         let searchBar:UISearchBar = UISearchBar(frame: CGRect(x:20, y:0, width:self.tableView.frame.width-20, height:(self.navigationController?.navigationBar.frame.height)! - 5))
         searchBar.placeholder = "Search for Places"
@@ -37,16 +51,28 @@ class YelpyViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func loadData() {
-        Business.searchWithTerm(term: self.searchTerm ?? "Thai", completion: { (businesses: [Business]?, error: Error?) -> Void in
+        Business.searchWithTerm(filter: self.filter, completion: { (businesses: [Business]?, error: Error?) -> Void in
+                // Stop the loading indicator
+                self.infiniteScrollActivityView!.stopAnimating()
+                self.isMoreDataLoading = false
+            
                 if let businesses = businesses {
-                    self.businesses = businesses
+                    if(self.filter.currentOffset > 0) {
+                        self.businesses += businesses
+                    } else {
+                        self.businesses = businesses
+                    }
+                    self.filter.currentOffset = self.businesses.count
+                    
                     for business in businesses {
                         print(business.name!)
                         print(business.address!)
                     }
+                    
                 } else {
                     //reset to empty
                     self.businesses = []
+                    self.filter.currentOffset = 0
                 }
                 self.tableView.reloadData()
             })
@@ -54,9 +80,9 @@ class YelpyViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     // MARK: - Table view
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    /*func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
-    }
+    }*/
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "BusinessTableViewCell", for: indexPath) as! BusinessTableViewCell
@@ -69,7 +95,12 @@ class YelpyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         if (business.imageURL != nil) {
             cell.businessImageView.setImageWith(business.imageURL! as URL)
         } else {
-            cell.businessImageView = nil
+            cell.businessImageView.image = nil
+        }
+        if (business.ratingImageURL != nil) {
+            cell.ratingImageView.setImageWith(business.ratingImageURL! as URL)
+        } else {
+            cell.ratingImageView.image = nil
         }
         return cell
     }
@@ -95,14 +126,38 @@ class YelpyViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        self.searchTerm = searchBar.text
+        self.filter.searchTerm = searchBar.text
+        self.filter.currentOffset = 0 //reset it if search term changes
         self.loadData()
         searchBar.resignFirstResponder()
     }
     
+    
+    // MARK: - Scrollview
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if (!isMoreDataLoading) {
+            // Calculate the position of one screen length before the bottom of the results
+            let scrollViewContentHeight = tableView.contentSize.height
+            //actual hieght of the table filled in with content - height of 1 page of content
+            let scrollOffsetThreshold = scrollViewContentHeight - tableView.bounds.size.height
+            
+            // When the user has scrolled past the threshold, start requesting
+            if(scrollView.contentOffset.y > scrollOffsetThreshold && tableView.isDragging) {
+                isMoreDataLoading = true
+                print("Loading more data.......offset = \(self.filter.currentOffset)")
+                
+                // Update position of loadingMoreView, and start loading indicator
+                let frame = CGRect(x: 0, y: tableView.contentSize.height, width: tableView.bounds.size.width, height: InfiniteScrollActivityView.defaultHeight)
+                infiniteScrollActivityView?.frame = frame
+                infiniteScrollActivityView!.startAnimating()
+                
+                self.loadData()
+            }
+            
+        }
+    }
 
-    
-    
 
     // MARK: - Navigation
 
@@ -112,8 +167,10 @@ class YelpyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         // Pass the selected object to the new view controller.
         if segue.identifier == "showFiltersViewController" {
             let filtersController = segue.destination as! FiltersViewController
-            filtersController.searchAction = { (filters: [String: AnyObject]) in 
-                print(filters)
+            filtersController.searchAction = { (filter: Filter) in
+                //print(filter.searchTerm)
+                self.filter = filter
+                self.loadData()
             }
         }
 

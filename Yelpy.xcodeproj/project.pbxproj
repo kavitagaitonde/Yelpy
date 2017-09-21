@@ -10,6 +10,9 @@
 		013BFB3B1F71C290004CF1B1 /* FiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013BFB3A1F71C290004CF1B1 /* FiltersViewController.swift */; };
 		013BFB3D1F71C29A004CF1B1 /* YelpyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013BFB3C1F71C29A004CF1B1 /* YelpyViewController.swift */; };
 		013BFB401F730751004CF1B1 /* BusinessTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013BFB3F1F730751004CF1B1 /* BusinessTableViewCell.swift */; };
+		013BFB421F743A9E004CF1B1 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013BFB411F743A9E004CF1B1 /* Filter.swift */; };
+		013BFB441F745E96004CF1B1 /* BusinessDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013BFB431F745E96004CF1B1 /* BusinessDetailsViewController.swift */; };
+		013BFB461F746CEE004CF1B1 /* InfiniteScrollActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013BFB451F746CEE004CF1B1 /* InfiniteScrollActivityView.swift */; };
 		066B25241F70E68700EC69D5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066B25231F70E68700EC69D5 /* AppDelegate.swift */; };
 		066B25291F70E68700EC69D5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 066B25271F70E68700EC69D5 /* Main.storyboard */; };
 		066B252B1F70E68700EC69D5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 066B252A1F70E68700EC69D5 /* Assets.xcassets */; };
@@ -24,6 +27,9 @@
 		013BFB3A1F71C290004CF1B1 /* FiltersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiltersViewController.swift; sourceTree = "<group>"; };
 		013BFB3C1F71C29A004CF1B1 /* YelpyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YelpyViewController.swift; sourceTree = "<group>"; };
 		013BFB3F1F730751004CF1B1 /* BusinessTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessTableViewCell.swift; sourceTree = "<group>"; };
+		013BFB411F743A9E004CF1B1 /* Filter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
+		013BFB431F745E96004CF1B1 /* BusinessDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessDetailsViewController.swift; sourceTree = "<group>"; };
+		013BFB451F746CEE004CF1B1 /* InfiniteScrollActivityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfiniteScrollActivityView.swift; sourceTree = "<group>"; };
 		066B25201F70E68700EC69D5 /* Yelpy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yelpy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		066B25231F70E68700EC69D5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		066B25281F70E68700EC69D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -54,6 +60,7 @@
 			isa = PBXGroup;
 			children = (
 				06F90EE51F72B9C6009F446E /* Business.swift */,
+				013BFB411F743A9E004CF1B1 /* Filter.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -63,6 +70,7 @@
 			children = (
 				066B25391F720E9900EC69D5 /* FiltersTableViewCell.swift */,
 				013BFB3F1F730751004CF1B1 /* BusinessTableViewCell.swift */,
+				013BFB451F746CEE004CF1B1 /* InfiniteScrollActivityView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -72,6 +80,7 @@
 			children = (
 				013BFB3A1F71C290004CF1B1 /* FiltersViewController.swift */,
 				013BFB3C1F71C29A004CF1B1 /* YelpyViewController.swift */,
+				013BFB431F745E96004CF1B1 /* BusinessDetailsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -276,11 +285,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				013BFB461F746CEE004CF1B1 /* InfiniteScrollActivityView.swift in Sources */,
 				066B25241F70E68700EC69D5 /* AppDelegate.swift in Sources */,
 				013BFB401F730751004CF1B1 /* BusinessTableViewCell.swift in Sources */,
 				066B253A1F720E9900EC69D5 /* FiltersTableViewCell.swift in Sources */,
+				013BFB441F745E96004CF1B1 /* BusinessDetailsViewController.swift in Sources */,
 				013BFB3D1F71C29A004CF1B1 /* YelpyViewController.swift in Sources */,
 				06F90EE61F72B9C6009F446E /* Business.swift in Sources */,
+				013BFB421F743A9E004CF1B1 /* Filter.swift in Sources */,
 				06F90EE91F72BADC009F446E /* YelpClient.swift in Sources */,
 				013BFB3B1F71C290004CF1B1 /* FiltersViewController.swift in Sources */,
 			);

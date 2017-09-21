@@ -20,10 +20,8 @@ class FiltersViewController: UIViewController, UITableViewDelegate, UITableViewD
     var isDistanceCollapsed : Bool = true
     var isSortByCollapsed : Bool = true
     var isCategoryCollapsed : Bool = true
-
-    var filtersDict : [String: AnyObject] = [:]
     var distanceArray : [String] = ["Auto", "0.3 miles", "1 mile", "5 miles", "10 miles", "20 miles"]
-    var sortByArray : [String] = ["Best Match"]
+    var sortByArray : [String] = ["Best Match", "Distance", "Highest Rated"]
     var categorySelectionDict : [Int:Bool] = [:]
     var selectedDistanceIndex = 0
     var selectedSortByIndex = 0
@@ -199,7 +197,7 @@ class FiltersViewController: UIViewController, UITableViewDelegate, UITableViewD
                       ["name" : "Wraps", "code": "wraps"],
                       ["name" : "Yugoslav", "code": "yugoslav"]]
     
-    var searchAction : ([String: AnyObject]) -> Void = { (filters: [String: AnyObject]) in }
+    var searchAction : (Filter) -> Void = { (filter: Filter) in }
     
     
     override func viewDidLoad() {
@@ -223,7 +221,7 @@ class FiltersViewController: UIViewController, UITableViewDelegate, UITableViewD
         return filtersCount
     }
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    /*func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: self.tableView.frame.width , height: 40))
         view.backgroundColor = .blue
         let button = UIButton(frame: CGRect(x: self.tableView.frame.width - 100, y:0, width: 50, height: 30))
@@ -232,13 +230,13 @@ class FiltersViewController: UIViewController, UITableViewDelegate, UITableViewD
         button.addTarget(self, action: #selector(sectionSelected(_:)), for: UIControlEvents.touchUpInside)
         view.addSubview(button)
         return view
-    }
+    }*/
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         //return "\(section)"
         switch (section) {
         case 0 : //deal
-            return ""
+            return "  "
         case 1 : //distance
             return "Distance"
         case 2 : // sort by
@@ -384,11 +382,19 @@ class FiltersViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     @IBAction func onSearchClicked(_ sender: AnyObject) {
-        let filters = ["deals": "on",
-                       "distance": self.distanceArray[self.selectedDistanceIndex],
-                       "sortBy": self.sortByArray[self.selectedSortByIndex]]
-        
-        searchAction(filters as [String : AnyObject])
+        let filter = Filter()
+        filter.dealsOn = self.isOfferingDeal
+        filter.sortMode = YelpSortMode(rawValue: self.selectedSortByIndex)
+        let categories = self.categorySelectionDict.keys
+        var filteredCategories : [String] = []
+        for k in categories {
+            if self.categorySelectionDict[k]! && self.categorySelectionDict[k]! == true {
+                var c = self.categoryArray[k] as Dictionary
+                filteredCategories.append(c["code"]!)
+            }
+        }
+        filter.categories = filteredCategories
+        searchAction(filter as Filter)
          _ = navigationController?.popViewController(animated: true)
     }
     
