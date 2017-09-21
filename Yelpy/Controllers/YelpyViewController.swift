@@ -20,7 +20,8 @@ class YelpyViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        self.tableView.estimatedRowHeight = 100
+        self.tableView.estimatedRowHeight = 75
+        self.tableView.rowHeight = UITableViewAutomaticDimension
         
         //setup navigation bar related items
         let searchBar:UISearchBar = UISearchBar(frame: CGRect(x:20, y:0, width:self.tableView.frame.width-20, height:(self.navigationController?.navigationBar.frame.height)! - 5))
@@ -69,7 +70,12 @@ class YelpyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         if (business.imageURL != nil) {
             cell.businessImageView.setImageWith(business.imageURL! as URL)
         } else {
-            cell.businessImageView = nil
+            cell.businessImageView.image = nil
+        }
+        if (business.ratingImageURL != nil) {
+            cell.ratingImageView.setImageWith(business.ratingImageURL! as URL)
+        } else {
+            cell.ratingImageView.image = nil
         }
         return cell
     }
