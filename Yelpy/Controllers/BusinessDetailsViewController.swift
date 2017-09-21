@@ -7,9 +7,24 @@
 //
 
 import UIKit
+import MapKit
 
 class BusinessDetailsViewController: UIViewController {
 
+    @IBOutlet weak var nameLabel: UILabel!
+    
+    @IBOutlet weak var distanceLabel: UILabel!
+    
+    @IBOutlet weak var reviewsLabel: UILabel!
+    
+    @IBOutlet weak var addressLabel: UILabel!
+    
+    @IBOutlet weak var categoryLabel: UILabel!
+    
+    @IBOutlet weak var mapView: MKMapView!
+    
+    var business : Business?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

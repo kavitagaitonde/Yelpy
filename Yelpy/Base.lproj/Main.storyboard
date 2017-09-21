@@ -30,7 +30,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="79"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="JGD-JK-t7W" id="osK-3L-cFR">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="79"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="78.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yKG-V0-EM7">
@@ -105,6 +105,7 @@
                                             <outlet property="nameLabel" destination="IVt-vJ-lDH" id="BPM-xX-EjZ"/>
                                             <outlet property="ratingImageView" destination="yKG-V0-EM7" id="tbv-n4-3Wy"/>
                                             <outlet property="reviewsLabel" destination="1nv-tF-BIB" id="3JX-FF-Za3"/>
+                                            <segue destination="he9-sR-KVZ" kind="show" identifier="showBusinessDetailsViewController" id="Fob-Es-4eU"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -149,7 +150,7 @@
                                         <rect key="frame" x="0.0" y="45" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RQ8-ym-s9M" id="dKw-vK-5yA">
-                                            <rect key="frame" x="0.0" y="0.0" width="336" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="336" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" onImage="SwitchOn" offImage="SwitchOff" translatesAutoresizingMaskIntoConstraints="NO" id="igg-aQ-jk3">
@@ -202,6 +203,77 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k4l-op-q8c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1600.8" y="-543.77811094452773"/>
+        </scene>
+        <!--Business Details View Controller-->
+        <scene sceneID="eT2-tz-kZb">
+            <objects>
+                <viewController id="he9-sR-KVZ" customClass="BusinessDetailsViewController" customModule="Yelpy" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="rHZ-2A-eaA"/>
+                        <viewControllerLayoutGuide type="bottom" id="72n-vt-sAH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="2Pi-f7-fjh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cBM-eQ-cPW">
+                                <rect key="frame" x="16" y="82" width="45" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZRZ-bI-yh1">
+                                <rect key="frame" x="317" y="81" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kt5-lC-zO8">
+                                <rect key="frame" x="16" y="138" width="63" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qW8-Wk-Ncz">
+                                <rect key="frame" x="16" y="167" width="71" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="S89-Sh-wgA">
+                                <rect key="frame" x="0.0" y="230" width="375" height="193"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </mapView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zgU-Ct-3lI">
+                                <rect key="frame" x="9" y="111" width="84" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Reviews" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="87F-mv-46D">
+                                <rect key="frame" x="101" y="111" width="63" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="addressLabel" destination="kt5-lC-zO8" id="MGt-Sn-EdS"/>
+                        <outlet property="categoryLabel" destination="qW8-Wk-Ncz" id="n3e-4K-0sN"/>
+                        <outlet property="distanceLabel" destination="ZRZ-bI-yh1" id="2Gg-sq-A6z"/>
+                        <outlet property="mapView" destination="S89-Sh-wgA" id="pOB-yk-OxO"/>
+                        <outlet property="nameLabel" destination="cBM-eQ-cPW" id="bTi-Ek-EhH"/>
+                        <outlet property="reviewsLabel" destination="87F-mv-46D" id="ciK-fF-kdg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qsy-8D-OWj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="925.60000000000002" y="112.89355322338831"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="6Rm-le-qZ3">
