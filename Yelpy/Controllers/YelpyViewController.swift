@@ -178,22 +178,6 @@ class YelpyViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 let detailsController = segue.destination as! BusinessDetailsViewController
                 let business = self.businesses[indexPath.row] as Business
                 detailsController.business = business
-                /*detailsController.nameLabel.text = business.name
-                detailsController.addressLabel.text = business.address
-                detailsController.reviewsLabel.text = "\(business.reviewCount ?? 0) reviews"
-                cell.distanceLabel.text = business.distance
-                cell.categoryLabel.text = business.categories
-                /*if (business.imageURL != nil) {
-                    cell.businessImageView.setImageWith(business.imageURL! as URL)
-                } else {
-                    cell.businessImageView.image = nil
-                }*/
-                if (business.ratingImageURL != nil) {
-                    cell.ratingImageView.setImageWith(business.ratingImageURL! as URL)
-                } else {
-                    cell.ratingImageView.image = nil
-                }*/
-
                 self.tableView.deselectRow(at: indexPath, animated: true)
             }
         }
