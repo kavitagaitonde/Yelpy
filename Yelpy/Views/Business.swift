@@ -11,6 +11,8 @@ import Foundation
 class Business: NSObject {
     let name: String?
     let address: String?
+    let displayAddress: String?
+    let coordinates: [String: Double]?
     let imageURL: URL?
     let categories: String?
     let distance: String?
@@ -28,8 +30,8 @@ class Business: NSObject {
         }
         
         let location = dictionary["location"] as? NSDictionary
-        var address = ""
         if location != nil {
+            var address = ""
             let addressArray = location!["address"] as? NSArray
             if addressArray != nil && addressArray!.count > 0 {
                 address = addressArray![0] as! String
@@ -42,8 +44,25 @@ class Business: NSObject {
                 }
                 address += neighborhoods![0] as! String
             }
+            self.address = address
+            let fullAddress = location!["display_address"] as? NSArray
+            if fullAddress != nil {
+                self.displayAddress = fullAddress?.componentsJoined(by: ",")
+            } else {
+                self.displayAddress = address
+            }
+            
+            let ll = location!["coordinate"] as? [String: Double]
+            if ll != nil {
+                self.coordinates = ll!
+            } else {
+                self.coordinates = nil
+            }
+        } else {
+            self.address = ""
+            self.displayAddress = self.address
+            self.coordinates = nil
         }
-        self.address = address
         
         let categoriesArray = dictionary["categories"] as? [[String]]
         if categoriesArray != nil {
@@ -75,6 +94,20 @@ class Business: NSObject {
         reviewCount = dictionary["review_count"] as? NSNumber
     }
     
+    func getLatitude() -> Double {
+        if self.coordinates != nil {
+            return self.coordinates!["latitude"]!
+        }
+        return 0
+    }
+
+    func getLongitude() -> Double {
+        if self.coordinates != nil {
+            return self.coordinates!["longitude"]!
+        }
+        return 0
+    }
+
     class func businesses(array: [NSDictionary]) -> [Business] {
         var businesses = [Business]()
         for dictionary in array {

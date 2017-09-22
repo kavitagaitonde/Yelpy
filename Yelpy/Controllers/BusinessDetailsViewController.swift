@@ -25,17 +25,18 @@ class BusinessDetailsViewController: UIViewController {
     
     @IBOutlet weak var mapView: MKMapView!
     
+    @IBOutlet weak var photoImageView: UIImageView!
+    
     var business : Business?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.photoImageView.layer.cornerRadius = 5.0
+        self.photoImageView.clipsToBounds = true
         self.updateViewForBusiness()
         
-        // set starting center location in San Francisco
-        let centerLocation = CLLocation(latitude: 37.7833, longitude: -122.4167)
-        goToLocation(location: centerLocation)
     }
 
     override func didReceiveMemoryWarning() {
@@ -46,27 +47,33 @@ class BusinessDetailsViewController: UIViewController {
     func updateViewForBusiness() {
         if (self.business != nil) {
             self.nameLabel.text = self.business!.name
-            self.addressLabel.text = self.business!.address
+            self.addressLabel.text = self.business!.displayAddress
             self.reviewsLabel.text = "\(self.business!.reviewCount ?? 0) reviews"
             self.distanceLabel.text = self.business!.distance
             self.categoryLabel.text = self.business!.categories
-            /*if (self.business! != nil) {
-             detailsController.businessImageView.setImageWith(self.business!.imageURL! as URL)
+            if (self.business!.imageURL != nil) {
+             self.photoImageView.setImageWith(self.business!.imageURL! as URL)
              } else {
-             detailsController.businessImageView.image = nil
-             }*/
+             self.photoImageView.image = nil
+             }
             if (self.business!.ratingImageURL != nil) {
                 self.ratingImageView.setImageWith(self.business!.ratingImageURL! as URL)
             } else {
                 self.ratingImageView.image = nil
             }
+            let centerLocation = CLLocation(latitude: self.business!.getLatitude(), longitude: self.business!.getLongitude())
+            goToLocation(location: centerLocation)
         }
     }
     
     func goToLocation(location: CLLocation) {
         let span = MKCoordinateSpanMake(0.1, 0.1)
         let region = MKCoordinateRegionMake(location.coordinate, span)
-        mapView.setRegion(region, animated: false)
+        self.mapView.setRegion(region, animated: false)
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = location.coordinate
+        annotation.title = "This is is!"
+        mapView.addAnnotation(annotation)
     }
     
     /*

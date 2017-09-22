@@ -280,6 +280,9 @@ class FiltersViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         cell.selectionSwitch.isHidden = true
         cell.selectionSwitch.isOn = false
+        cell.accessoryType = UITableViewCellAccessoryType.none
+        cell.accessoryView = nil
+        
         switch (indexPath.section) {
         case 0 : //deal
             cell.filterLabel?.text = "Offering a deal"
@@ -291,14 +294,24 @@ class FiltersViewController: UIViewController, UITableViewDelegate, UITableViewD
         case 1 : //distance
             if self.isDistanceCollapsed {
                 cell.filterLabel?.text = self.distanceArray[self.selectedDistanceIndex]
+                let imageView = UIImageView(image: UIImage(named: "disclosure"))
+                cell.accessoryView = imageView
             } else {
                 cell.filterLabel?.text = self.distanceArray[indexPath.row]
+                if (indexPath.row == self.selectedDistanceIndex) {
+                    cell.accessoryType = UITableViewCellAccessoryType.checkmark
+                }
             }
         case 2 : // sort by
             if self.isSortByCollapsed {
                 cell.filterLabel?.text = self.sortByArray[self.selectedSortByIndex]
+                let imageView = UIImageView(image: UIImage(named: "disclosure"))
+                cell.accessoryView = imageView
             } else {
                 cell.filterLabel?.text = self.sortByArray[indexPath.row]
+                if (indexPath.row == self.selectedSortByIndex) {
+                    cell.accessoryType = UITableViewCellAccessoryType.checkmark
+                }
             }
         case 3 : // category
             if self.isCategoryCollapsed && indexPath.row == 3 {
