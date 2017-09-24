@@ -7,17 +7,24 @@
 //
 
 import Foundation
+import MapKit
 
-class Business: NSObject {
+class Business: NSObject, MKAnnotation {
     let name: String?
     let address: String?
     let displayAddress: String?
-    let coordinates: [String: Double]?
+    let coordinate: CLLocationCoordinate2D
     let imageURL: URL?
     let categories: String?
     let distance: String?
     let ratingImageURL: URL?
     let reviewCount: NSNumber?
+    var title: String? {
+        return name!
+    }
+    var subtitle: String? {
+        return address! + " (" + categories! + ")"
+    }
     
     init(dictionary: NSDictionary) {
         name = dictionary["name"] as? String
@@ -54,14 +61,14 @@ class Business: NSObject {
             
             let ll = location!["coordinate"] as? [String: Double]
             if ll != nil {
-                self.coordinates = ll!
+                self.coordinate = CLLocationCoordinate2D(latitude: (ll?["latitude"]!)!, longitude: (ll?["longitude"]!)!)
             } else {
-                self.coordinates = nil
+                self.coordinate = CLLocationCoordinate2D()
             }
         } else {
             self.address = ""
             self.displayAddress = self.address
-            self.coordinates = nil
+            self.coordinate = CLLocationCoordinate2D()
         }
         
         let categoriesArray = dictionary["categories"] as? [[String]]
@@ -94,20 +101,6 @@ class Business: NSObject {
         reviewCount = dictionary["review_count"] as? NSNumber
     }
     
-    func getLatitude() -> Double {
-        if self.coordinates != nil {
-            return self.coordinates!["latitude"]!
-        }
-        return 0
-    }
-
-    func getLongitude() -> Double {
-        if self.coordinates != nil {
-            return self.coordinates!["longitude"]!
-        }
-        return 0
-    }
-
     class func businesses(array: [NSDictionary]) -> [Business] {
         var businesses = [Business]()
         for dictionary in array {

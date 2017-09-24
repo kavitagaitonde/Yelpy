@@ -29,8 +29,8 @@ class FiltersViewController: UIViewController, UITableViewDelegate, UITableViewD
     let filtersCount = 4
     let categoryArray = [["name" : "Afghan", "code": "afghani"],
                       ["name" : "African", "code": "african"],
-                      ["name" : "American, New", "code": "newamerican"],
-                      ["name" : "American, Traditional", "code": "tradamerican"],
+                      ["name" : "American (New)", "code": "newamerican"],
+                      ["name" : "American (Traditional)", "code": "tradamerican"],
                       ["name" : "Arabian", "code": "arabian"],
                       ["name" : "Argentine", "code": "argentine"],
                       ["name" : "Armenian", "code": "armenian"],
@@ -205,7 +205,9 @@ class FiltersViewController: UIViewController, UITableViewDelegate, UITableViewD
 
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        
+        self.tableView.frame = CGRect(x: 10, y: 0, width: self.view.frame.width-20 , height: self.view.frame.height)
+       // self.tableView.backgroundColor = UIColor.clear
+
         //self.navigationItem.rightBarButtonItem.
         //addTarget(self, action: #selector(onSearchClicked(_:)), for: UIControlEvents.touchUpInside)
     }
@@ -232,11 +234,20 @@ class FiltersViewController: UIViewController, UITableViewDelegate, UITableViewD
         return view
     }*/
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        //return "\(section)"
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         switch (section) {
         case 0 : //deal
-            return "  "
+            return 20
+        default :
+            return 40
+        }
+    }
+    
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch (section) {
+        case 0 : //deal
+            return ""
         case 1 : //distance
             return "Distance"
         case 2 : // sort by
@@ -282,10 +293,10 @@ class FiltersViewController: UIViewController, UITableViewDelegate, UITableViewD
         cell.selectionSwitch.isOn = false
         cell.accessoryType = UITableViewCellAccessoryType.none
         cell.accessoryView = nil
-        
+        cell.filterLabel?.textAlignment = NSTextAlignment.left
         switch (indexPath.section) {
         case 0 : //deal
-            cell.filterLabel?.text = "Offering a deal"
+            cell.filterLabel?.text = "Offering a Deal"
             cell.selectionSwitch.isHidden = false
             cell.selectionSwitch.isOn = self.isOfferingDeal
             cell.switchAction = { (isOn: Bool) in
@@ -315,7 +326,8 @@ class FiltersViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
         case 3 : // category
             if self.isCategoryCollapsed && indexPath.row == 3 {
-                cell.filterLabel?.text = "Show more"
+                cell.filterLabel?.text = "Show All"
+                cell.filterLabel?.textAlignment = NSTextAlignment.center
             } else {
                 cell.selectionSwitch.isHidden = false
                 cell.filterLabel?.text = self.categoryArray[indexPath.row]["name"]

@@ -7,19 +7,24 @@
 //
 
 import UIKit
+import MapKit
 
 class YelpyViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet var tableView: UITableView!
     
     var infiniteScrollActivityView:InfiniteScrollActivityView?
     var isMoreDataLoading = false
     var businesses : [Business] = []
     var filter : Filter = Filter()
+    var mapView : MKMapView!
+    var isMapView : Bool = false
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        //setup tableview params
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.estimatedRowHeight = 75
@@ -35,9 +40,18 @@ class YelpyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         insets.bottom += InfiniteScrollActivityView.defaultHeight + 50
         self.tableView.contentInset = insets
 
-
+        //setup mapview
+        self.mapView = MKMapView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.size.width, height: self.view.bounds.size.height))
+        let span = MKCoordinateSpanMake(0.05, 0.05)
+        let centerLocation = CLLocation(latitude: 37.7833, longitude: -122.4167)
+        let region = MKCoordinateRegionMake(centerLocation.coordinate, span)
+        self.mapView.setRegion(region, animated: false)
+        self.mapView.isHidden = true
+        self.mapView.isUserInteractionEnabled = false
+        self.view.addSubview(self.mapView)
+        
         //setup navigation bar related items
-        let searchBar:UISearchBar = UISearchBar(frame: CGRect(x:20, y:0, width:self.tableView.frame.width-20, height:(self.navigationController?.navigationBar.frame.height)! - 5))
+        let searchBar:UISearchBar = UISearchBar(frame: CGRect(x:20, y:0, width:self.tableView.frame.width-40, height:(self.navigationController?.navigationBar.frame.height)! - 5))
         searchBar.placeholder = "Search for Places"
         searchBar.delegate = self
         self.navigationItem.titleView = searchBar // or use self.navigationcontroller.topItem?.titleView = searchBar
@@ -75,9 +89,18 @@ class YelpyViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     self.filter.currentOffset = 0
                 }
                 self.tableView.reloadData()
+                if self.isMapView {
+                    self.setupMapViewWithBusinesses()
+                }
             })
     }
 
+    func setupMapViewWithBusinesses() {
+        for business in self.businesses {
+            self.mapView.addAnnotation(business)
+        }
+    }
+    
     // MARK: - Table view
     
     /*func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -156,6 +179,28 @@ class YelpyViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
             
         }
+    }
+
+    @IBAction func mapButtonClicked(_ sender: AnyObject) {
+            if(self.isMapView) {
+                self.isMapView = false
+                self.mapView.isHidden = true
+                self.mapView.isUserInteractionEnabled = false
+                self.tableView.isHidden = false
+                self.tableView.isUserInteractionEnabled = true
+                self.loadData()
+                UIView.transition(from: self.mapView, to: self.tableView, duration: 1, options: UIViewAnimationOptions.transitionFlipFromLeft, completion: nil)
+            } else {
+                self.isMapView = true
+                self.tableView.isHidden = true
+                self.tableView.isUserInteractionEnabled = false
+                self.mapView.isHidden = false
+                self.mapView.isUserInteractionEnabled = true
+                self.navigationItem.rightBarButtonItem?.title = "List"
+                self.isMapView = true
+                self.setupMapViewWithBusinesses()
+                UIView.transition(from: self.tableView, to: self.mapView, duration: 1, options: UIViewAnimationOptions.transitionFlipFromRight, completion: nil)
+            }
     }
 
 

@@ -61,19 +61,15 @@ class BusinessDetailsViewController: UIViewController {
             } else {
                 self.ratingImageView.image = nil
             }
-            let centerLocation = CLLocation(latitude: self.business!.getLatitude(), longitude: self.business!.getLongitude())
-            goToLocation(location: centerLocation)
+            
+            let span = MKCoordinateSpanMake(0.1, 0.1)
+            let region = MKCoordinateRegionMake(self.business!.coordinate, span)
+            self.mapView.setRegion(region, animated: false)
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = self.business!.coordinate
+            annotation.title = self.business?.name
+            mapView.addAnnotation(annotation)
         }
-    }
-    
-    func goToLocation(location: CLLocation) {
-        let span = MKCoordinateSpanMake(0.1, 0.1)
-        let region = MKCoordinateRegionMake(location.coordinate, span)
-        self.mapView.setRegion(region, animated: false)
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = location.coordinate
-        annotation.title = "This is is!"
-        mapView.addAnnotation(annotation)
     }
     
     /*
