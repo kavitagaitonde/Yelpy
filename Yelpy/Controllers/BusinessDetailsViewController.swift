@@ -27,6 +27,10 @@ class BusinessDetailsViewController: UIViewController {
     
     @IBOutlet weak var photoImageView: UIImageView!
     
+    @IBOutlet weak var phoneLabel: UILabel!
+    
+    @IBOutlet weak var directionsLabel: UILabel!
+    
     var business : Business?
     
     override func viewDidLoad() {
@@ -36,6 +40,14 @@ class BusinessDetailsViewController: UIViewController {
         self.photoImageView.layer.cornerRadius = 5.0
         self.photoImageView.clipsToBounds = true
         self.updateViewForBusiness()
+        self.phoneLabel.isUserInteractionEnabled = true;
+        let tapGesture = UITapGestureRecognizer(target: self, action:#selector(phoneClicked(_:)))
+        self.phoneLabel.addGestureRecognizer(tapGesture)
+ 
+        self.directionsLabel.isUserInteractionEnabled = true;
+        let tapGesture2 = UITapGestureRecognizer(target: self, action:#selector(directionsClicked(_:)))
+        self.directionsLabel.addGestureRecognizer(tapGesture2)
+
         
     }
 
@@ -49,6 +61,7 @@ class BusinessDetailsViewController: UIViewController {
             self.nameLabel.text = self.business!.name
             self.addressLabel.text = self.business!.displayAddress
             self.reviewsLabel.text = "\(self.business!.reviewCount ?? 0) reviews"
+            self.phoneLabel?.text = self.business!.displayPhone
             self.distanceLabel.text = self.business!.distance
             self.categoryLabel.text = self.business!.categories
             if (self.business!.imageURL != nil) {
@@ -70,6 +83,18 @@ class BusinessDetailsViewController: UIViewController {
             annotation.title = self.business?.name
             mapView.addAnnotation(annotation)
         }
+    }
+    
+    func phoneClicked(_ sender: UITapGestureRecognizer) {
+        if let url = URL(string: "tel://\(self.business!.phone!)") {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
+    }
+
+    func directionsClicked(_ sender: UITapGestureRecognizer) {
+        let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: self.business!.coordinate, addressDictionary:nil))
+        mapItem.name = self.business?.name
+        mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving])
     }
     
     /*

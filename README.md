@@ -22,33 +22,33 @@ The following **optional** features are implemented:
 
 - [X] Search results page
    - [X] Infinite scroll for restaurant results.
-   - [ ] Implement map view of restaurant results.
+   - [X] Implement map view of restaurant results.
 - [X] Filter page
    - [ ] Implement a custom switch instead of the default UISwitch.
-   - [ ] Distance filter should expand as in the real Yelp app
+   - [X] Distance filter should expand as in the real Yelp app
    - [X] Categories should show a subset of the full list with a "See All" row to expand. Category list is [here](http://www.yelp.com/developers/documentation/category_list).
 - [X] Implement the restaurant detail page.
 
 The following **additional** features are implemented:
 
-- [ ] List anything else that you can get done to improve the app functionality!
+- [X] Added ability to call the business from the Details page
+- [X] Added ability to get driving directions to the business from the Details page
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
-1.
-2.
+1.In general would like to learn the best practices on how to handle images or resize them correctly for 2x/3x. Especially for images downloaded from the internet.
+2.Didnt quite figure out the best way to make custom table view cells have a shorter width than the tableview. In the end just ended up shortening the tableview width to get the "inset" effect on cells.
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://i.imgur.com/1bbCEf4.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-Describe any challenges encountered while building the app.
 
 ## License
 

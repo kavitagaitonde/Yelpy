@@ -96,6 +96,8 @@ class YelpyViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
 
     func setupMapViewWithBusinesses() {
+        //remove previously added annotations
+        self.mapView.removeAnnotations(self.mapView.annotations)
         for business in self.businesses {
             self.mapView.addAnnotation(business)
         }

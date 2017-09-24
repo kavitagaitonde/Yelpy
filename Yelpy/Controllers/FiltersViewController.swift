@@ -293,7 +293,7 @@ class FiltersViewController: UIViewController, UITableViewDelegate, UITableViewD
         cell.selectionSwitch.isOn = false
         cell.accessoryType = UITableViewCellAccessoryType.none
         cell.accessoryView = nil
-        cell.filterLabel?.textAlignment = NSTextAlignment.left
+        cell.filterLabel?.textAlignment = .left
         switch (indexPath.section) {
         case 0 : //deal
             cell.filterLabel?.text = "Offering a Deal"
@@ -327,7 +327,7 @@ class FiltersViewController: UIViewController, UITableViewDelegate, UITableViewD
         case 3 : // category
             if self.isCategoryCollapsed && indexPath.row == 3 {
                 cell.filterLabel?.text = "Show All"
-                cell.filterLabel?.textAlignment = NSTextAlignment.center
+                cell.filterLabel?.textAlignment = .center
             } else {
                 cell.selectionSwitch.isHidden = false
                 cell.filterLabel?.text = self.categoryArray[indexPath.row]["name"]
