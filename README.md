@@ -37,7 +37,9 @@ The following **additional** features are implemented:
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
 1.In general would like to learn the best practices on how to handle images or resize them correctly for 2x/3x. Especially for images downloaded from the internet.
+
 2.Didnt quite figure out the best way to make custom table view cells have a shorter width than the tableview. In the end just ended up shortening the tableview width to get the "inset" effect on cells.
+
 3.As mentioned above in the optional section, i implemented the custom UISwitch by adding views directly to the custom cell, not ideal but get the expected UI effect. Next step is to subclass UISwitch and add this funtionality into it.
 ## Video Walkthrough
 
