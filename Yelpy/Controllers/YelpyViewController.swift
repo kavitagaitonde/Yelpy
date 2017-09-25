@@ -76,7 +76,7 @@ class YelpyViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     } else {
                         self.businesses = businesses
                     }
-                    self.filter.currentOffset = self.businesses.count
+                    //self.filter.currentOffset = self.businesses.count
                     
                     for business in businesses {
                         print(business.name!)
@@ -147,10 +147,14 @@ class YelpyViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.showsCancelButton = false
         searchBar.text = ""
+        self.filter = Filter()
+        self.filter.searchTerm = ""
+        self.loadData()
         searchBar.resignFirstResponder()
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.filter = Filter()
         self.filter.searchTerm = searchBar.text
         self.filter.currentOffset = 0 //reset it if search term changes
         self.loadData()
@@ -176,6 +180,8 @@ class YelpyViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 let frame = CGRect(x: 0, y: tableView.contentSize.height, width: tableView.bounds.size.width, height: InfiniteScrollActivityView.defaultHeight)
                 infiniteScrollActivityView?.frame = frame
                 infiniteScrollActivityView!.startAnimating()
+                
+                self.filter.currentOffset = self.businesses.count
                 
                 self.loadData()
             }

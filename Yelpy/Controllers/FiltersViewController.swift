@@ -20,7 +20,13 @@ class FiltersViewController: UIViewController, UITableViewDelegate, UITableViewD
     var isDistanceCollapsed : Bool = true
     var isSortByCollapsed : Bool = true
     var isCategoryCollapsed : Bool = true
-    var distanceArray : [String] = ["Auto", "0.3 miles", "1 mile", "5 miles", "10 miles", "20 miles"]
+    //var distanceArray : [String] = ["Auto", "0.3 miles", "1 mile", "5 miles", "10 miles", "20 miles"]
+    var distanceArray = [["name": "Auto", "code": 0.0],
+                         ["name": "0.3 miles", "code": 482.803],
+                         ["name": "1 mile", "code": 1609.34],
+                         ["name": "5 miles", "code": 8046.72],
+                         ["name": "10 miles", "code": 16093.4],
+                         ["name": "20 miles", "code": 32186.9]]
     var sortByArray : [String] = ["Best Match", "Distance", "Highest Rated"]
     var categorySelectionDict : [Int:Bool] = [:]
     var selectedDistanceIndex = 0
@@ -304,11 +310,11 @@ class FiltersViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
         case 1 : //distance
             if self.isDistanceCollapsed {
-                cell.filterLabel?.text = self.distanceArray[self.selectedDistanceIndex]
+                cell.filterLabel?.text = self.distanceArray[self.selectedDistanceIndex]["name"] as! String?
                 let imageView = UIImageView(image: UIImage(named: "disclosure"))
                 cell.accessoryView = imageView
             } else {
-                cell.filterLabel?.text = self.distanceArray[indexPath.row]
+                cell.filterLabel?.text = self.distanceArray[indexPath.row]["name"] as! String?
                 if (indexPath.row == self.selectedDistanceIndex) {
                     cell.accessoryType = UITableViewCellAccessoryType.checkmark
                 }
@@ -422,6 +428,7 @@ class FiltersViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
         }
         filter.categories = filteredCategories
+        filter.distance = self.distanceArray[self.selectedDistanceIndex]["code"] as! Double
         searchAction(filter as Filter)
          _ = navigationController?.popViewController(animated: true)
     }

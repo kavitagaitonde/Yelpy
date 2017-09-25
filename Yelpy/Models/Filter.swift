@@ -13,6 +13,7 @@ class Filter: NSObject {
     var sortMode: YelpSortMode?
     var categories: [String]?
     var dealsOn: Bool = false
+    var distance: Double = 0
     var currentOffset = 0
 
     override init() {
@@ -22,6 +23,7 @@ class Filter: NSObject {
         sortMode = YelpSortMode.bestMatched
         categories = []
         dealsOn = false
+        distance = 0
     }
     
     init(dictionary: NSDictionary) {
@@ -30,6 +32,7 @@ class Filter: NSObject {
         categories = dictionary["categories"] as? [String]
         dealsOn = dictionary["dealsOn"] as! Bool
         currentOffset = dictionary["offset"] as! Int
+        distance = dictionary["offset"] as! Double
     }
     
 }

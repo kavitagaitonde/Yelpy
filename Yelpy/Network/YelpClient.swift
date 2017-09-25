@@ -47,10 +47,10 @@ class YelpClient: BDBOAuth1SessionManager {
     }
     
     func searchWithTerm(_ term: String, completion: @escaping ([Business]?, Error?) -> Void) -> URLSessionDataTask {
-        return searchWithTerm(term, sort: nil, categories: nil, deals: nil, offset: 0, completion: completion)
+        return searchWithTerm(term, sort: nil, categories: nil, deals: nil, distance: 0, offset: 0, completion: completion)
     }
     
-    func searchWithTerm(_ term: String, sort: YelpSortMode?, categories: [String]?, deals: Bool?, offset: Int, completion: @escaping ([Business]?, Error?) -> Void) -> URLSessionDataTask {
+    func searchWithTerm(_ term: String, sort: YelpSortMode?, categories: [String]?, deals: Bool?, distance: Double?, offset: Int, completion: @escaping ([Business]?, Error?) -> Void) -> URLSessionDataTask {
         
         
         
@@ -69,6 +69,10 @@ class YelpClient: BDBOAuth1SessionManager {
         
         if deals != nil {
             parameters["deals_filter"] = deals! as AnyObject?
+        }
+        
+        if distance != 0 {
+            parameters["radius_filter"] = distance! as AnyObject?
         }
         
         parameters["offset"] = Int(offset) as AnyObject

@@ -38,12 +38,12 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 1.In general would like to learn the best practices on how to handle images or resize them correctly for 2x/3x. Especially for images downloaded from the internet.
 2.Didnt quite figure out the best way to make custom table view cells have a shorter width than the tableview. In the end just ended up shortening the tableview width to get the "inset" effect on cells.
-3.As mentioned above in the optional section, i implemented the sort of a custom UISwitch by adding views directly to the custom cell, not ideal but get the expected UI effect. Next step is to subclass UISwitch and add this funtionality into it.
+3.As mentioned above in the optional section, i implemented the custom UISwitch by adding views directly to the custom cell, not ideal but get the expected UI effect. Next step is to subclass UISwitch and add this funtionality into it.
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-<img src='https://i.imgur.com/1bbCEf4.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://i.imgur.com/GmMfskb.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
