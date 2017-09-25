@@ -190,6 +190,7 @@ class YelpyViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 self.mapView.isUserInteractionEnabled = false
                 self.tableView.isHidden = false
                 self.tableView.isUserInteractionEnabled = true
+                self.navigationItem.rightBarButtonItem?.title = "Map"
                 self.loadData()
                 UIView.transition(from: self.mapView, to: self.tableView, duration: 1, options: UIViewAnimationOptions.transitionFlipFromLeft, completion: nil)
             } else {

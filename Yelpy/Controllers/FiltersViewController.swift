@@ -327,7 +327,9 @@ class FiltersViewController: UIViewController, UITableViewDelegate, UITableViewD
         case 3 : // category
             if self.isCategoryCollapsed && indexPath.row == 3 {
                 cell.filterLabel?.text = "Show All"
-                cell.filterLabel?.textAlignment = .center
+                cell.filterLabel?.textAlignment = .center //This does not work ??
+                let imageView = UIImageView(image: UIImage(named: "disclosure"))
+                cell.accessoryView = imageView
             } else {
                 cell.selectionSwitch.isHidden = false
                 cell.filterLabel?.text = self.categoryArray[indexPath.row]["name"]
@@ -343,6 +345,7 @@ class FiltersViewController: UIViewController, UITableViewDelegate, UITableViewD
         default :
             break
         }
+        cell.setupSwitchImages()
         return cell
 
     }

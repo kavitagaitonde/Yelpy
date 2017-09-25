@@ -24,7 +24,7 @@ The following **optional** features are implemented:
    - [X] Infinite scroll for restaurant results.
    - [X] Implement map view of restaurant results.
 - [X] Filter page
-   - [ ] Implement a custom switch instead of the default UISwitch.
+   - [X] Implement a custom switch instead of the default UISwitch. I implemented this by adding images and labels for on and off states respectively directly in the FiltersCell and manipulating these views via isHidden. The next step will be to extract these views into a subclass of UISwitch class. 
    - [X] Distance filter should expand as in the real Yelp app
    - [X] Categories should show a subset of the full list with a "See All" row to expand. Category list is [here](http://www.yelp.com/developers/documentation/category_list).
 - [X] Implement the restaurant detail page.
@@ -38,7 +38,7 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 1.In general would like to learn the best practices on how to handle images or resize them correctly for 2x/3x. Especially for images downloaded from the internet.
 2.Didnt quite figure out the best way to make custom table view cells have a shorter width than the tableview. In the end just ended up shortening the tableview width to get the "inset" effect on cells.
-
+3.As mentioned above in the optional section, i implemented the sort of a custom UISwitch by adding views directly to the custom cell, not ideal but get the expected UI effect. Next step is to subclass UISwitch and add this funtionality into it.
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:

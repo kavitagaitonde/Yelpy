@@ -163,6 +163,33 @@
                                                         <action selector="switchValueChanged:" destination="RQ8-ym-s9M" eventType="valueChanged" id="eQi-YB-MHc"/>
                                                     </connections>
                                                 </switch>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ON" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bZt-HW-gOJ">
+                                                    <frame key="frameInset" minX="304" minY="10" width="26" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="OFF" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6ye-Ko-AHt" userLabel="OFF">
+                                                    <frame key="frameInset" minX="330" minY="10" width="26" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="flower" highlightedImage="SwitchOn" translatesAutoresizingMaskIntoConstraints="NO" id="CxR-YN-8cl">
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="25" id="CY0-w5-mON"/>
+                                                        <constraint firstAttribute="height" constant="25" id="jZm-Fy-JJc"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="flower" translatesAutoresizingMaskIntoConstraints="NO" id="8WF-pP-k6h">
+                                                    <frame key="frameInset" minX="345" minY="9" width="32" height="32"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="25" id="W2X-Fm-F85"/>
+                                                        <constraint firstAttribute="height" constant="25" id="fbj-Kh-awn"/>
+                                                    </constraints>
+                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b4x-8o-1GB">
                                                     <frame key="frameInset" minX="14" minY="8" width="286" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
@@ -174,13 +201,21 @@
                                                 <constraint firstItem="igg-aQ-jk3" firstAttribute="top" secondItem="dKw-vK-5yA" secondAttribute="top" constant="6" id="LjG-Cc-246"/>
                                                 <constraint firstAttribute="bottom" secondItem="igg-aQ-jk3" secondAttribute="bottom" constant="6" id="S8t-uj-iM9"/>
                                                 <constraint firstItem="b4x-8o-1GB" firstAttribute="top" secondItem="dKw-vK-5yA" secondAttribute="topMargin" constant="4" id="VpF-SD-Dgi"/>
+                                                <constraint firstAttribute="trailing" secondItem="8WF-pP-k6h" secondAttribute="trailing" constant="6" id="Y5G-fH-bhj"/>
                                                 <constraint firstAttribute="trailing" secondItem="igg-aQ-jk3" secondAttribute="trailing" constant="5" id="aNg-hw-14C"/>
+                                                <constraint firstItem="8WF-pP-k6h" firstAttribute="top" secondItem="dKw-vK-5yA" secondAttribute="top" constant="9" id="csv-DX-v9x"/>
+                                                <constraint firstItem="CxR-YN-8cl" firstAttribute="top" secondItem="dKw-vK-5yA" secondAttribute="top" constant="9" id="qFw-Ka-aD2"/>
                                                 <constraint firstItem="b4x-8o-1GB" firstAttribute="leading" secondItem="dKw-vK-5yA" secondAttribute="leadingMargin" id="qK1-m0-JvS"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="CxR-YN-8cl" secondAttribute="trailing" constant="18" id="s7z-Ka-EaQ"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="filterLabel" destination="b4x-8o-1GB" id="HLt-me-V54"/>
                                             <outlet property="selectionSwitch" destination="igg-aQ-jk3" id="vhh-O7-zzp"/>
+                                            <outlet property="switchOffImageView" destination="CxR-YN-8cl" id="iK4-pJ-2Fv"/>
+                                            <outlet property="switchOffLabel" destination="6ye-Ko-AHt" id="3mB-Dx-naf"/>
+                                            <outlet property="switchOnImageView" destination="8WF-pP-k6h" id="QjY-s8-u49"/>
+                                            <outlet property="switchOnLabel" destination="bZt-HW-gOJ" id="WjY-o1-B2J"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -350,5 +385,6 @@
     <resources>
         <image name="SwitchOff" width="16" height="16"/>
         <image name="SwitchOn" width="16" height="16"/>
+        <image name="flower" width="16" height="16"/>
     </resources>
 </document>
